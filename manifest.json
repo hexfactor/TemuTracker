@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "TemuTeller",
+  "name": "TemuTracker",
   "version": "1.0",
 
   "description": "Saves and displays Temu price history.",
@@ -9,7 +9,7 @@
     "default_icon": {
       "48": "icons/border-48.png"
     },
-    "default_title": "Temu Price History",
+    "default_title": "Price History",
     "default_popup": "popup.html"
   },
 
