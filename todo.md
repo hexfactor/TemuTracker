@@ -1,14 +1,13 @@
 # Todo List
 
-## Short-term
+### Short-term
 
-- [ ] Get rid of the TypeError caused when opening the extension window on unsupported sites. Ideally check for compatability before calling the script.
-- [ ] Consider a better search method for when there are thousands of entries
-- [ ] Check for the model or version
-- [ ] Sort out variable names
+- [ ] Get rid of the TypeError caused when opening the extension window on unsupported sites. At the moment, the extension popup sends an API call to the extension's `background.js` script. Ideally check for site compatability before calling the script.
+- [ ] Consider a more efficient search method for when there are many saved entries.
+- [ ] Check for the model of an item before adding the price to prevent multiple prices from being recorded under a single product.
+- [ ] Clean up variable names
 
-## Long-term
+### Long-term
 
-- [ ] Add a graph (long-term)
-- [ ] Add the ability to read the prices of items in the cart
-- [ ] Add the ability to read the prices of items in search results
+- [ ] Add a price history graph to the popup.
+- [ ] Add the ability to read the prices of items in the cart and in search results.
