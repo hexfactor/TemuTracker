@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "TemuTeller",
+  "version": "1.0",
+
+  "description": "Saves and displays Temu price history.",
+
+  "browser_action": {
+    "default_icon": {
+      "48": "icons/border-48.png"
+    },
+    "default_title": "Temu Price History",
+    "default_popup": "popup.html"
+  },
+
+  "icons": {
+    "48": "icons/border-48.png"
+  },
+
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.temu.com/goods.html*", "https://www.temu.com/au/*"],
+      "js": ["background.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
