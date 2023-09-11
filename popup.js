@@ -1,3 +1,29 @@
+// About page overlay
+document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('overlay');
+    
+    overlay.addEventListener('click', function () {
+        aboutoff();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('trackOverlay');
+    
+    overlay.addEventListener('click', function () {
+        abouton();
+    });
+});
+
+function abouton() {
+    document.getElementById('overlay').style.display = "block";
+}
+
+function aboutoff() {
+    document.getElementById('overlay').style.display = "none";
+}
+
+
 // Get the current tab URL
 browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
