@@ -8,6 +8,7 @@
             font-family: Arial, sans-serif;
             font-size: 14px;
         }
+
         img {
             display: inline-block;
             width: 28px;
@@ -23,19 +24,52 @@
             vertical-align: middle;
             text-align: center;
             font-size: 24px;
+            padding-top: 2px;
         }
+
         #headers {
             background-color: #fb7701;
-            color:white;
-            width:100%;
-            height:33px;
-            margin:0px;
+            color: white;
+            width: 100%;
+            height: 33px;
+            margin: 0px;
             border-top-left-radius: 6px;
             border-top-right-radius: 6px;
             text-align: center;
-            padding-top:4px;
-            padding-bottom:0px;
+            padding-top: 4px;
+            padding-bottom: 0px;
         }
+
+        #content {
+            border-color: #fb7701;
+            border-left-width: 2px;
+            border-right-width: 2px;
+            border-top-width: 0;
+            border-bottom-width: 0;
+            border-radius: 0px;
+            border-style: solid;
+            margin: 0;
+            padding: 8px;
+            display: none;
+            color: #000b
+        }
+
+        #searchResults {
+            padding: 8px;
+            border-color: #fb7701;
+            border-width: 2px;
+            border-radius: 6px;
+            border-style: solid;
+            display: none;
+            margin-bottom: 8px;
+            color: #000b
+        }
+
+        p {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+
         table {
             border-collapse: collapse;
             width: 100%;
@@ -43,36 +77,68 @@
 
         th,
         td {
-            border: 1px solid #ccc;
+            border: 1px solid #fb7701;
             padding: 5px;
             text-align: left;
         }
 
-        th {
-            background-color: #eee;
+        td {
+            border-radius: 4px;
+            color: #000b
         }
+
+        th {
+            background-color: #fb7701;
+            color: white;
+            font-weight: bold;
+        }
+
         input[type=text] {
             width: 100%;
-            padding: 6px 10px;
-            margin: 8px 0;
+            padding: 8px 10px;
+            margin-bottom: 8px;
+            margin-left: 0;
+            margin-right: 0;
             box-sizing: border-box;
-            border-color:#fb7701;
+            border-color: #fb7701;
             box-shadow: none;
-            border-style:solid;
+            border-style: solid;
             border-bottom-right-radius: 6px;
             border-bottom-left-radius: 6px;
             text-align: center;
             outline-color: #fb7701;
+            border-width: 2px;
         }
-        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+
+        textarea:focus,
+        input:focus {
+            outline: none;
+        }
+
+        ::placeholder {
             color: #000;
-            opacity: 0.5; /* Firefox */
+            opacity: 0.5;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .example::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .example {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
         }
     </style>
 </head>
 
 <body>
-    <div id="headers"><img src="icons/logo-128.png" width="20"><h1>TEMU Price History</h1></div>
+    <div id="headers"><img src="icons/logo-128.png" width="20">
+        <h1>TEMU Price History</h1>
+    </div>
     <div id="content">
     </div>
     <div id="search">

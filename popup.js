@@ -15,8 +15,8 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             let itemID = response.item;
             // Ensure itemID is accessible to the rest of the script
             console.log("ID: " + itemID);
-
-            content.innerHTML = `<p><strong>Product ID:</strong> ${itemID}</p>`;
+            document.getElementById("content").style.display = "block";
+            content.innerHTML = `<p style="margin-top: 0;"><strong>Product ID:</strong> ${itemID}</p>`;
 
             // Get the stored data from local storage
             browser.storage.local.get('pages', function (data) {
@@ -71,6 +71,8 @@ const searchResults = document.getElementById('searchResults');
 searchInput.addEventListener('input', () => {
     const searchTerm = searchInput.value.toLowerCase();
 
+    document.getElementById("searchResults").style.display = "block";
+
     // Get the stored data from local storage
     browser.storage.local.get('pages', function (data) {
         let pages = data.pages;
@@ -88,14 +90,9 @@ function displaySearchResults(results) {
     let resultHTML = '';
 
     if (results.length > 0) {
-        resultHTML += '<p>Search Results:</p>';
-        resultHTML += '<ul>';
-
         for (let result of results) {
-            resultHTML += `<li><strong>Name:</strong> ${result.name} (<a href="https://www.temu.com/search_result.html?search_key=${result.item}" target="_blank">ID: ${result.item}</a>)<br><strong>Price:</strong> $${result.price} (${new Date(result.date).toLocaleDateString()})</li>`;
+            resultHTML += `<strong>Name:</strong> ${result.name} (<a href="https://www.temu.com/search_result.html?search_key=${result.item}" target="_blank">ID: ${result.item}</a>)<br><strong>Price:</strong> $${result.price} (${new Date(result.date).toLocaleDateString()})<br><br>`;
         }
-
-        resultHTML += '</ul>';
     } else {
         resultHTML = '<p>No results found.</p>';
     }
