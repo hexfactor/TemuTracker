@@ -13,7 +13,16 @@
             text-align: center;
             margin: 10px;
         }
-
+        #headers {
+            background-color: #fb7701;
+            color:white;
+            width:100%;
+            height:50px;
+            margin:0px;
+            padding:2px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+        }
         table {
             border-collapse: collapse;
             width: 100%;
@@ -39,10 +48,10 @@
 </head>
 
 <body>
-    <h1>TEMU Price History</h1>
+    <div id="headers"><h1>TEMU Price History</h1></div>
     <div id="content">
         <center>
-            <p>No price history found for this site.</p>
+            <p style="color:#888;">No price history found for this site.</p>
         </center>
     </div>
     <div id="search">
