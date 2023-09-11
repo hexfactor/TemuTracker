@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Temu Price Tracker",
-  "version": "1.0",
+  "version": "1.1",
 
   "description": "Saves and displays Temu price history.",
 
