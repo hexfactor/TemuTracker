@@ -1,4 +1,4 @@
-# TEMUTracker
+# TEMU Price Tracker
 
 This is my attempt at a Firefox price-tracking extension for TEMU. It saves the prices of products as you browse the site, storing them locally and displaying them in a popup.
 
