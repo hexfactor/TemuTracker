@@ -56,6 +56,17 @@
             padding: 6px 10px;
             margin: 8px 0;
             box-sizing: border-box;
+            border-color:#fb7701;
+            box-shadow: none;
+            border-style:solid;
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+            text-align: center;
+            outline-color: #fb7701;
+        }
+        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #000;
+            opacity: 0.5; /* Firefox */
         }
     </style>
 </head>
@@ -63,9 +74,6 @@
 <body>
     <div id="headers"><img src="icons/logo-128.png" width="20"><h1>TEMU Price History</h1></div>
     <div id="content">
-        <center>
-            <p style="color:#888;">No price history found for this site.</p>
-        </center>
     </div>
     <div id="search">
         <!-- Display the search input field -->

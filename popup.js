@@ -40,7 +40,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                             tableHTML += `<tr><td>${date}</td><td>$${price}</td></tr>`;
                         }
                     }
-                    tableHTML += `</tbody></table><br>`;
+                    tableHTML += `</tbody></table>`;
                 
                     // Set the entire HTML content at once
                     content.innerHTML += tableHTML;
