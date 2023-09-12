@@ -25,7 +25,7 @@ function aboutoff() {
 
 
 // Get the current tab URL
-browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
     // Get the current URL
     let currentURL = tabs[0].url;
@@ -34,7 +34,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     console.log("URL: " + currentURL);
 
     // Request the HTML content of the current tab
-    browser.tabs.sendMessage(tabs[0].id, { action: "getHTML" }, function (response) {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "getHTML" }, function (response) {
         // If response is successful, display the HTML content in the popup
         if (response.success) {
             let content = document.getElementById('content');
@@ -45,7 +45,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             content.innerHTML = `<p style="margin-top: 0;"><strong>Product ID:</strong> ${itemID}</p>`;
 
             // Get the stored data from local storage
-            browser.storage.local.get('pages', function (data) {
+            chrome.storage.local.get('pages', function (data) {
                 let pages = data.pages;
 
                 // Find the matching item in the data
@@ -100,7 +100,7 @@ searchInput.addEventListener('input', () => {
     document.getElementById("searchResults").style.display = "block";
 
     // Get the stored data from local storage
-    browser.storage.local.get('pages', function (data) {
+    chrome.storage.local.get('pages', function (data) {
         let pages = data.pages;
 
         // Filter items by name

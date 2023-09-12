@@ -2,7 +2,7 @@
 document.body.innerHTML += `<button id="trackOverlay" style="position: absolute; width: auto; height: auto; left: 12px; bottom: 0px; z-index: 2; cursor: pointer; background-color: #fb7701; color:white; font-weight: 300; align-items:center; font-size:10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-right-radius: 6px; border-top-left-radius: 6px; padding-bottom: 3px; padding-top: 2px; padding-left: 8px; padding-right: 8px; border-width: 0px;" onclick="this.style.display = 'none';">Tracking prices.</button>`;
 
 // Load existing stats using the storage API.
-let gettingStoredStats = browser.storage.local.get();
+let gettingStoredStats = chrome.storage.local.get();
 
 // Create a new Date object with the current date.
 let currentDate = new Date().setHours(0, 0, 0, 0);
@@ -16,7 +16,7 @@ let itemExist = document.querySelector("._2rn4tqXP").innerText;
 let currentID = document.querySelector("._1YBVObhm").innerText.replace(/\nCopy/g, "").replace(/Item ID: /g, "");
 console.log("Date: " + new Date().toLocaleDateString() + "\n" + "Price: " + priceExist + "\n" + "Item: " + itemExist + "\n" + "ID: " + currentID + "\n" + "URL: " + currentURL);
 
-browser.storage.local.get("pages").then((data) => {
+chrome.storage.local.get("pages").then((data) => {
   // Check if there is any data stored
   if (data.pages) {
     // Loop through the stored pages
@@ -40,14 +40,14 @@ browser.storage.local.get("pages").then((data) => {
     data.pages = [newPage];
   }
 
-  // Save the updated data to browser.storage.local
-  browser.storage.local.set(data).then(() => {
+  // Save the updated data to chrome.storage.local
+  chrome.storage.local.set(data).then(() => {
     console.log("The page data has been saved.");
   });
 });
 
 // Listen for messages from popup.js requesting the HTML content of the current tab
-browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "getHTML") {
     // Send a response containing the HTML content
     sendResponse({ success: true, item: currentID });
