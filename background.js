@@ -8,8 +8,7 @@ let gettingStoredStats = browser.storage.local.get();
 let currentDate = new Date().setHours(0, 0, 0, 0);
 
 
-// This following section is not fully functional yet but is intended to replace the current product id extraction method.
-
+// PID extraction from alternate URL
 
 // Get the link element by its 'rel' attribute and 'hreflang' attribute
 var linkElement = document.querySelector('link[rel="alternate"][hreflang="en"]');
@@ -19,12 +18,12 @@ if (linkElement) {
   var hrefValue = linkElement.getAttribute('href');
   console.log(hrefValue); // This will log the extracted URL to the console
   // Use regular expression to extract the numeric part
-  var numericPart = hrefValue.match(/\/(\d{10,})\.html$/);
+  var numericPart = hrefValue.match(/\d{10,}(?=.html)/);
   // Check if a numeric part was found
   if (numericPart) {
     // Convert it to a string
     var numericString = numericPart[0];
-    console.log("PID: " + numericString); // This will log the extracted numeric string to the console
+    console.log("PID extracted successfully: " + numericString); // This will log the extracted numeric string to the console
   } else {
     console.log("PID not found in the URL.");
   };
@@ -33,11 +32,9 @@ if (linkElement) {
 }
 
 // Get the current item info
-let currentURL = window.location.href;
 let priceExist = document.querySelector("._3cZnvUvE").innerText.replace(/AU\$|\s/g, "");
 let itemExist = document.querySelector("._2rn4tqXP").innerText;
-let currentID = document.querySelector("._1YBVObhm").innerText.replace(/\nCopy/g, "").replace(/Item ID: /g, "");
-console.log("Date: " + new Date().toLocaleDateString() + "\n" + "Price: " + priceExist + "\n" + "Item: " + itemExist + "\n" + "ID: " + currentID + "\n" + "URL: " + currentURL);
+console.log("Date: " + new Date().toLocaleDateString() + "\n" + "Price: " + priceExist + "\n" + "Item: " + itemExist + "\n" + "PID: " + numericString + "\n" + "URL: " + window.location.href);
 
 browser.storage.local.get("pages").then((data) => {
   // Check if there is any data stored
@@ -45,7 +42,7 @@ browser.storage.local.get("pages").then((data) => {
     // Loop through the stored pages
     for (let page of data.pages) {
       // Compate the ID and date with the current ones
-      if (page.item === currentID && page.date === currentDate && page.price === priceExist) {
+      if (page.pid === numericString && page.date === currentDate && page.price === priceExist) {
         // If they match, do not run and instead just exit.
         console.log("Today's price has already been recorded.");
         return;
@@ -54,7 +51,7 @@ browser.storage.local.get("pages").then((data) => {
   }
 
   // Add the current URL and date to the stored data
-  let newPage = { item: currentID, date: currentDate, name: itemExist, price: priceExist };
+  let newPage = { pid: numericString, date: currentDate, name: itemExist, price: priceExist };
   if (data.pages) {
     // If there is existing data, append the new page to it
     data.pages.push(newPage);
@@ -73,7 +70,7 @@ browser.storage.local.get("pages").then((data) => {
 browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "getHTML") {
     // Send a response containing the HTML content
-    sendResponse({ success: true, item: currentID });
+    sendResponse({ success: true, item: numericString });
     console.log("Connected to extension popup.");
   }
 });
