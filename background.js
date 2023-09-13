@@ -7,10 +7,33 @@ let gettingStoredStats = browser.storage.local.get();
 // Create a new Date object with the current date.
 let currentDate = new Date().setHours(0, 0, 0, 0);
 
-// Get the current URL
-let currentURL = window.location.href;
 
-// Use the querySelector method to get the first element with class "pageTitle".
+// This following section is not fully functional yet but is intended to replace the current product id extraction method.
+
+
+// Get the link element by its 'rel' attribute and 'hreflang' attribute
+var linkElement = document.querySelector('link[rel="alternate"][hreflang="en"]');
+// Check if the element exists
+if (linkElement) {
+  // Extract the 'href' attribute value
+  var hrefValue = linkElement.getAttribute('href');
+  console.log(hrefValue); // This will log the extracted URL to the console
+  // Use regular expression to extract the numeric part
+  var numericPart = hrefValue.match(/\/(\d{10,})\.html$/);
+  // Check if a numeric part was found
+  if (numericPart) {
+    // Convert it to a string
+    var numericString = numericPart[0];
+    console.log("PID: " + numericString); // This will log the extracted numeric string to the console
+  } else {
+    console.log("PID not found in the URL.");
+  };
+} else {
+  console.log("URL containing PID not found.");
+}
+
+// Get the current item info
+let currentURL = window.location.href;
 let priceExist = document.querySelector("._3cZnvUvE").innerText.replace(/AU\$|\s/g, "");
 let itemExist = document.querySelector("._2rn4tqXP").innerText;
 let currentID = document.querySelector("._1YBVObhm").innerText.replace(/\nCopy/g, "").replace(/Item ID: /g, "");
