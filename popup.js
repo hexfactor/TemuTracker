@@ -68,7 +68,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
                     // Loop through the data and build the table rows
                     for (let page of pages) {
-                        if (page.pid === itemID) {
+                        if (page.pid === itemID || page.name === name) {
                             let date = new Date(page.date).toLocaleDateString();
                             let price = page.price;
                             tableHTML += `<tr><td>${date}</td><td>$${price}</td></tr>`;

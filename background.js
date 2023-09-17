@@ -70,7 +70,7 @@ browser.storage.local.get("pages").then((data) => {
 browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action === "getHTML") {
     // Send a response containing the HTML content
-    sendResponse({ success: true, item: numericString });
+    sendResponse({ success: true, item: numericString, name: itemExist });
     console.log("Connected to extension popup.");
   }
 });
