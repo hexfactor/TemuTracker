@@ -1,7 +1,7 @@
 // About page overlay
 document.addEventListener('DOMContentLoaded', function () {
     var overlay = document.getElementById('overlay');
-    
+
     overlay.addEventListener('click', function () {
         aboutoff();
     });
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
     var overlay = document.getElementById('trackOverlay');
-    
+
     overlay.addEventListener('click', function () {
         abouton();
     });
@@ -23,6 +23,13 @@ function aboutoff() {
     document.getElementById('overlay').style.display = "none";
 }
 
+function isNumeric(input) {
+    // Regular expression to match only numbers (0-9)
+    var numericRegex = /^[0-9]+$/;
+
+    // Check if the input matches the numeric regex
+    return numericRegex.test(input);
+}
 
 // Get the current tab URL
 browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -58,7 +65,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                     let tableHTML = `<p><strong>Name:</strong> ${item.name}</p>`;
                     tableHTML += `<p><strong>Current Price:</strong> $${item.price}</p>`;
                     tableHTML += `<table><thead><tr><th>Date</th><th>Price</th></tr></thead><tbody>`;
-                
+
                     // Loop through the data and build the table rows
                     for (let page of pages) {
                         if (page.pid === itemID) {
@@ -68,11 +75,11 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                         }
                     }
                     tableHTML += `</tbody></table>`;
-                
+
                     // Set the entire HTML content at once
                     content.innerHTML += tableHTML;
                 }
-                
+
                 // If item is not found, display an error message
                 else {
                     let content = document.getElementById('content');
@@ -105,7 +112,7 @@ searchInput.addEventListener('input', () => {
         let pages = data.pages;
 
         // Filter items by name
-        let filteredItems = pages.filter(page => page.name.toLowerCase().includes(searchTerm) && page.pid);
+        let filteredItems = pages.filter(page => page.name.toLowerCase().includes(searchTerm) && (isNumeric(page.pid) || isNumeric(page.item)));
 
         // Display search results
         displaySearchResults(filteredItems);
