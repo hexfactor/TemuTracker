@@ -18,7 +18,7 @@ if (linkElement) {
   var hrefValue = linkElement.getAttribute('href');
   console.log(hrefValue); // This will log the extracted URL to the console
   // Use regular expression to extract the numeric part
-  var numericPart = hrefValue.match(/\d{10,}(?=.html)/);
+  var numericPart = hrefValue.match(/\d{10,}(?=.html)/); // (Searches for 10+ consecutive digits followed by ".html")
   // Check if a numeric part was found
   if (numericPart) {
     // Convert it to a string

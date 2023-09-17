@@ -49,7 +49,8 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 let pages = data.pages;
 
                 // Find the matching item in the data
-                let item = pages.find(page => page.item === itemID);
+                let item = pages.find(page => page.pid === itemID);
+                console.log("Searching for " + itemID)
 
                 // If item is found, display its name and price history
                 if (item) {
@@ -60,7 +61,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 
                     // Loop through the data and build the table rows
                     for (let page of pages) {
-                        if (page.item === itemID) {
+                        if (page.pid === itemID) {
                             let date = new Date(page.date).toLocaleDateString();
                             let price = page.price;
                             tableHTML += `<tr><td>${date}</td><td>$${price}</td></tr>`;
@@ -75,7 +76,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 // If item is not found, display an error message
                 else {
                     let content = document.getElementById('content');
-                    content.innerHTML = `<p>Sorry, no price history found for this item.</p>`;
+                    content.innerHTML += `<p>Sorry, no price history found for this item.</p>`;
                 }
             });
         }
@@ -104,7 +105,7 @@ searchInput.addEventListener('input', () => {
         let pages = data.pages;
 
         // Filter items by name
-        let filteredItems = pages.filter(page => page.name.toLowerCase().includes(searchTerm));
+        let filteredItems = pages.filter(page => page.name.toLowerCase().includes(searchTerm) && page.pid);
 
         // Display search results
         displaySearchResults(filteredItems);
