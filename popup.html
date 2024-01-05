@@ -70,6 +70,10 @@
             margin-bottom: 0.5em;
         }
 
+        a {
+            color:#fb7701;
+        }
+
         table {
             border-collapse: collapse;
             width: 100%;
@@ -137,6 +141,7 @@
             padding-top: 96px;
             padding-left: 8px;
             padding-right: 8px;
+            backdrop-filter: blur(2px)
         }
 
         textarea:focus,
@@ -147,19 +152,6 @@
         ::placeholder {
             color: #000;
             opacity: 0.5;
-        }
-
-        /* Hide scrollbar for Chrome, Safari and Opera */
-        .example::-webkit-scrollbar {
-            display: none;
-        }
-
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .example {
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
         }
     </style>
 </head>
@@ -185,6 +177,7 @@
         </div>
         <div id="about">
             <p>This extension automatically records the price, name and product ID of all viewed products on TEMU, presenting them in a searchable, digestible format.</p>
+            <p>If you notice any bugs or have ideas for improvements, please submit an <a href="https://github.com/hexfactor/TemuTracker/issues">issue</a> on Github or email me at <a href="mailto:hexfactordev@gmail.com">hexfactordev@gmail.com</a>.</p>
         </div>
     </div>
     <script src="popup.js"></script>
