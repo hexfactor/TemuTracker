@@ -1,4 +1,6 @@
-// About page overlay
+// === About Page overlay ===
+
+
 document.addEventListener('DOMContentLoaded', function () {
     var overlay = document.getElementById('overlay');
 
@@ -30,6 +32,10 @@ function isNumeric(input) {
     // Check if the input matches the numeric regex
     return numericRegex.test(input);
 }
+
+
+// === Product Info ===
+
 
 // Get the current tab URL
 browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -95,6 +101,8 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     });
 });
 
+
+// === Search ===
 
 
 // Get references to the search input and results container
