@@ -102,6 +102,44 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 });
 
 
+// === Data download ===
+
+
+var dlButton = document.getElementById('dlButton');
+
+// Add an event listener to the button
+dlButton.addEventListener('click', function() {
+    // Get the "pages" object from the browser storage
+    browser.storage.local.get('pages', function(data) {
+        let pages = data.pages;
+
+        // Convert the "pages" object to a JSON string
+        let jsonString = JSON.stringify(pages);
+
+        // Create a Blob object from the JSON string
+        let blob = new Blob([jsonString], {type: "application/json"});
+
+        // Create a URL from the Blob object
+        let url = URL.createObjectURL(blob);
+        
+        // Create a new Date object with the current date.
+        let currentDate = new Date();
+
+        // Create a hidden anchor element, set its href to the URL, and trigger a click event to start the download
+        let a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = ('Temu-Prices_' + currentDate.toLocaleDateString() + '_' + currentDate.toLocaleTimeString() + '.json').replace(/[ /:]/g, '-');
+        document.body.appendChild(a);
+        a.click();
+
+        // Clean up
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+});
+
+
 // === Search ===
 
 
