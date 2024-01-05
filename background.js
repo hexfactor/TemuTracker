@@ -1,14 +1,16 @@
+var errors = 0
+
 // Add a tracking indicator
-document.body.innerHTML += `<button id="trackOverlay" style="position: fixed; width: auto; height: auto; left: 12px; bottom: 0px; z-index: 2; cursor: pointer; background-color: #fb7701; color:white; font-weight: 300; align-items:center; font-size:10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-right-radius: 6px; border-top-left-radius: 6px; padding-bottom: 3px; padding-top: 2px; padding-left: 8px; padding-right: 8px; border-width: 0px;" onclick="this.style.display = 'none';">Tracking prices</button>`;
+document.body.innerHTML += `<button id="trackOverlay" style="position: fixed; width: auto; height: auto; left: 12px; bottom: 0px; z-index: 2; cursor: pointer; background-color: #fb7701; color:white; font-weight: 300; align-items:center; font-size:10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-right-radius: 6px; border-top-left-radius: 6px; padding-bottom: 3px; padding-top: 2px; padding-left: 8px; padding-right: 8px; border-width: 0px;" onclick="this.style.display = 'none';">Loading... </button>`;
 
 // Load existing stats using the storage API.
-let gettingStoredStats = browser.storage.local.get();
+let gettingStoredStats = browser.storage.local.get(); // Possibly redundant (FIX)
 
 // Create a new Date object with the current date.
-let currentDate = new Date().setHours(0, 0, 0, 0);
+let currentDate = new Date().setHours(0, 0, 0, 0); // Merge into references
 
 
-// PID extraction from alternate URL
+// === PID extraction from alternate URL ===
 
 // Get the link element by its 'rel' attribute and 'hreflang' attribute
 var linkElement = document.querySelector('link[rel="alternate"][hreflang="en"]');
@@ -26,26 +28,32 @@ if (linkElement) {
     console.log("PID extracted successfully: " + numericString); // This will log the extracted numeric string to the console
   } else {
     console.log("PID not found in the URL.");
+    errors++
   };
 } else {
   console.log("URL containing PID not found.");
+  errors++
 }
 
 // Get the current item info
-let priceExist = document.querySelector("._3cZnvUvE").innerText.replace(/AU\$|\s/g, "");
+let priceExist = document.querySelector("._3cZnvUvE").innerText.replace(/AU\$|\s/g, ""); // Returns a price value, which should be decimal but is actually a string (FIX)
 let itemExist = document.querySelector("._2rn4tqXP").innerText;
 console.log("Date: " + new Date().toLocaleDateString() + "\n" + "Price: " + priceExist + "\n" + "Item: " + itemExist + "\n" + "PID: " + numericString + "\n" + "URL: " + window.location.href);
+
+
+// === Data storage ===
+
 
 browser.storage.local.get("pages").then((data) => {
   // Check if there is any data stored
   if (data.pages) {
     // Loop through the stored pages
     for (let page of data.pages) {
-      // Compate the ID and date with the current ones
+      // Compare the ID and date with the current ones
       if (page.pid === numericString && page.date === currentDate && page.price === priceExist) {
         // If they match, do not run and instead just exit.
         console.log("Today's price has already been recorded.");
-        return;
+        return; // (FIX), don't use return and instead use if... else.
       }
     }
   }
@@ -65,6 +73,15 @@ browser.storage.local.get("pages").then((data) => {
     console.log("The page data has been saved.");
   });
 });
+
+
+// Update status indicator
+let trackOverlay = document.getElementById('trackOverlay');
+if (errors==0) {
+  trackOverlay.textContent = 'Tracking prices';
+} else {
+  trackOverlay.textContent = 'Error reading page';
+};
 
 // Listen for messages from popup.js requesting the HTML content of the current tab
 browser.runtime.onMessage.addListener(function (request, sender, sendResponse) {
