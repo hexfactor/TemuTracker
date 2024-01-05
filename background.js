@@ -1,7 +1,11 @@
 var errors = 0
 
-// Add a tracking indicator
-document.body.innerHTML += `<button id="trackOverlay" style="position: fixed; width: auto; height: auto; left: 12px; bottom: 0px; z-index: 2; cursor: pointer; background-color: #fb7701; color:white; font-weight: 300; align-items:center; font-size:10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-right-radius: 6px; border-top-left-radius: 6px; padding-bottom: 3px; padding-top: 2px; padding-left: 8px; padding-right: 8px; border-width: 0px;" onclick="this.style.display = 'none';">Loading... </button>`;
+// Add a status indicator
+if (document.getElementById('trackOverlay')) {
+    console.log('Status indicator already created.');
+} else {
+  document.body.innerHTML += `<button id="trackOverlay" style="position: fixed; width: auto; height: auto; left: 12px; bottom: 0px; z-index: 2; cursor: pointer; background-color: #fb7701; color:white; font-weight: 300; align-items:center; font-size:10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-right-radius: 6px; border-top-left-radius: 6px; padding-bottom: 3px; padding-top: 2px; padding-left: 8px; padding-right: 8px; border-width: 0px;" onclick="this.style.display = 'none';">Loading... </button>`;
+}
 
 // Load existing stats using the storage API.
 let gettingStoredStats = browser.storage.local.get(); // Possibly redundant (FIX)
