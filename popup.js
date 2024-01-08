@@ -69,7 +69,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 if (item) {
                     let content = document.getElementById('content');
                     let tableHTML = `<p><strong>Name:</strong> ${item.name}</p>`;
-                    tableHTML += `<p><strong>Current Price:</strong> $${item.price}</p>`;
+                    tableHTML += `<p><strong>Current Price:</strong> ${item.price}</p>`;
                     tableHTML += `<table><thead><tr><th>Date</th><th>Price</th></tr></thead><tbody>`;
 
                     // Loop through the data and build the table rows
@@ -77,7 +77,7 @@ browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                         if (page.pid === itemID || page.name === name) {
                             let date = new Date(page.date).toLocaleDateString();
                             let price = page.price;
-                            tableHTML += `<tr><td>${date}</td><td>$${price}</td></tr>`;
+                            tableHTML += `<tr><td>${date}</td><td>${price}</td></tr>`;
                         }
                     }
                     tableHTML += `</tbody></table>`;
