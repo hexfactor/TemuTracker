@@ -7,14 +7,12 @@ if (document.getElementById('trackOverlay')) {
   document.body.innerHTML += `<button id="trackOverlay" style="position: fixed; width: auto; height: auto; left: 12px; bottom: 0px; z-index: 2; cursor: pointer; background-color: #fb7701; color:white; font-weight: 300; align-items:center; font-size:10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-right-radius: 6px; border-top-left-radius: 6px; padding-bottom: 3px; padding-top: 2px; padding-left: 8px; padding-right: 8px; border-width: 0px;" onclick="this.style.display = 'none';">Loading... </button>`;
 }
 
-// Load existing stats using the storage API.
-let gettingStoredStats = browser.storage.local.get(); // Possibly redundant (FIX)
-
 // Create a new Date object with the current date.
 let currentDate = new Date().setHours(0, 0, 0, 0); // Merge into references
 
 
 // === PID extraction from alternate URL ===
+
 
 // Get the link element by its 'rel' attribute and 'hreflang' attribute
 var linkElement = document.querySelector('link[rel="alternate"][hreflang="en"]');
