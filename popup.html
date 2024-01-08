@@ -38,6 +38,7 @@
             text-align: center;
             padding-top: 4px;
             padding-bottom: 0px;
+            cursor: default;
         }
 
         #content {
@@ -125,6 +126,8 @@
             color: #000d;
             padding-top: 2;
             padding-bottom: 2;
+            background-color: #fff;
+            cursor: default;
         }
 
         #overlay {
@@ -136,13 +139,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #fffc;
+            background-color: #fff8;
             z-index: 2;
             cursor: pointer;
-            padding-top: 96px;
+            padding-top: 72px;
             padding-left: 8px;
             padding-right: 8px;
-            backdrop-filter: blur(2px)
+            backdrop-filter: blur(2px) saturate(80%);
         }
 
         textarea:focus,
@@ -177,9 +180,9 @@
             <h1>About this Extension</h1>
         </div>
         <div id="about">
-            <p>This extension automatically records the price, name and product ID of all viewed products on TEMU, presenting them in a searchable, digestible format.</p>
+            <p>This extension automatically records the price, name and product ID of all viewed product pages on TEMU, presenting them in a searchable format.</p>
             <p>If you notice any bugs or have ideas for improvements, please submit an <a href="https://github.com/hexfactor/TemuTracker/issues">issue</a> on Github or email me at <a href="mailto:hexfactordev@gmail.com">hexfactordev@gmail.com</a>.</p><hr style="height:2px;border-width:0;color: #fb7701;background-color: #fb7701;">
-            <p>To export all saved price information as a JSON file, <a id="dlButton" style="text-decoration-line: underline;">click here</a>.</p>
+            <p>To export all saved price information as a JSON file, <a id="dlButton" style="text-decoration-line: underline; cursor: pointer;">click here</a>. </p><p><i>Price import feature coming soon.</i></p>
         </div>
     </div>
     <script src="popup.js"></script>
