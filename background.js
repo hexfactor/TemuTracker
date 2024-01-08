@@ -7,11 +7,19 @@ function indicate(statusMsg) {
   if (trackOverlay) {
     trackOverlay.textContent = statusMsg;
   } else {
-    document.body.innerHTML += `<button id="trackOverlay" style="position: fixed; width: auto; height: auto; left: 12px; bottom: 0px; z-index: 2; cursor: pointer; background-color: #fb7701; color:white; font-weight: 300; align-items:center; font-size:10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-right-radius: 6px; border-top-left-radius: 6px; padding-bottom: 3px; padding-top: 2px; padding-left: 8px; padding-right: 8px; border-width: 0px;" onclick="this.style.display = 'none';">` + statusMsg + `</button>`;
+    document.body.innerHTML += `<button id="trackOverlay" style="position: fixed; width: auto; height: auto; left: 12px; bottom: 0px; z-index: 2; cursor: pointer; background-color: #fb7701; color:white; font-weight: 300; align-items:center; font-size:10px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-right-radius: 6px; border-top-left-radius: 6px; padding-bottom: 3px; padding-top: 2px; padding-left: 8px; padding-right: 8px; border-width: 0px;">` + statusMsg + `</button>`;
   }
 };
 
 indicate("Loading... ")
+
+// Add an event listener to the indicator
+
+let trackOverlay = document.getElementById('trackOverlay');
+trackOverlay.addEventListener('click', function() {
+  alert("The Temu Price Tracker Firefox extension tracks prices on visited TEMU product pages. On all other TEMU pages, including search and deal pages, nothing is tracked.");
+});
+
 
 // Create a new Date object with the current date.
 let currentDate = new Date().setHours(0, 0, 0, 0); // Merge into references
@@ -26,14 +34,14 @@ var linkElement = document.querySelector('link[rel="alternate"][hreflang="en"]')
 if (linkElement) {
   // Extract the 'href' attribute value
   var hrefValue = linkElement.getAttribute('href');
-  console.log(hrefValue); // This will log the extracted URL to the console
+  //console.log(hrefValue); // This will log the extracted URL to the console
   // Use regular expression to extract the numeric part
   var numericPart = hrefValue.match(/\d{10,}(?=.html)/); // (Searches for 10+ consecutive digits followed by ".html")
   // Check if a numeric part was found
   if (numericPart) {
     // Convert it to a string
     var numericString = numericPart[0];
-    console.log("PID extracted successfully: " + numericString); // This will log the extracted numeric string to the console
+    //console.log("PID extracted successfully: " + numericString); // This will log the extracted numeric string to the console
   } else {
     console.log("PID not found in the URL.");
     errors++
@@ -49,7 +57,7 @@ if (linkElement) {
 
 let priceExist, itemExist;
 try {
-  priceExist = parseFloat(document.querySelector("._3cZnvUvE").innerText.replace(/[^0-9.]/g, "")); // Returns a price value
+  priceExist = document.querySelector("._3cZnvUvE").innerText.replace(/\s/g, ''); // Returns a price value
   itemExist = document.querySelector("._2rn4tqXP").innerText;
   console.log("Date: " + new Date().toLocaleDateString() + "\n" + "Price: " + priceExist + "\n" + "Item: " + itemExist + "\n" + "PID: " + numericString + "\n" + "URL: " + window.location.href);
 } catch (error) {
