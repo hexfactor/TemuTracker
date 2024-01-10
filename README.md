@@ -26,7 +26,7 @@ Please feel free to contribute or publish issues. It may not currently work in a
 <h2 align="center">Screenshot</h2>
 
 <p align="center">
-    <img src="./src/screenshot.png" width="75%">
+    <img src="./screenshot.png" width="75%">
 </p>
 
 <h2 align="center">Disclaimer</h2>
