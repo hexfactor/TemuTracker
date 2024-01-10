@@ -57,7 +57,7 @@ if (linkElement) {
 
 let priceExist, itemExist;
 try {
-  priceExist = document.querySelector("._3cZnvUvE").innerText.replace(/\s/g, ''); // Returns a price value
+  priceExist = document.querySelector("._3cZnvUvE").innerText.replace(/AU\$|\s/g, ""); // Returns a price value
   itemExist = document.querySelector("._2rn4tqXP").innerText;
   console.log("Date: " + new Date().toLocaleDateString() + "\n" + "Price: " + priceExist + "\n" + "Item: " + itemExist + "\n" + "PID: " + numericString + "\n" + "URL: " + window.location.href);
 } catch (error) {

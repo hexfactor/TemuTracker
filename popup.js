@@ -171,7 +171,7 @@ function displaySearchResults(results) {
 
     if (results.length > 0) {
         for (let result of results) {
-            resultHTML += `<strong>Name:</strong> ${result.name} (<a href="https://www.temu.com/search_result.html?search_key=${result.pid}" target="_blank">PID: ${result.pid}</a>)<br><strong>Price:</strong> $${result.price} (${new Date(result.date).toLocaleDateString()})<br><br>`;
+            resultHTML += `<strong>Name:</strong> ${result.name} (<a href="https://www.temu.com/search_result.html?search_key=${result.pid}" target="_blank">PID: ${result.pid}</a>)<br><strong>Price:</strong> ${result.price} (${new Date(result.date).toLocaleDateString()})<br><br>`;
         }
     } else {
         resultHTML = '<p>No results found.</p>';
