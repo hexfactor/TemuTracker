@@ -18,8 +18,9 @@ _Look for `(FIX)` within code_
 
 - [ ] Check for the model of an item before adding the price to prevent multiple prices from being recorded under a single product.
 - [ ] Clean up variable names.
-- [ ] Fix the price-saving function to be more compatible with all currencies: `let priceExist = document.querySelector("._3cZnvUvE").innerText.replace(/AU\$|\s/g, "");`. This may also involve implementing a script to tidy up any previous mis-saved prices.
+- [x] Fix the price-saving function to be more compatible with all currencies.
 - [ ] Organise code into functions for better tidiness and referencability
+- [ ] Track product stock levels (div id `A7jaetX9`)
 
 ## Long-term
 
@@ -32,3 +33,4 @@ _Look for `(FIX)` within code_
 - [ ] Settings page
   - [ ] Export/Import saved prices as CSV or JSON to backup
   - [ ] Clear saved prices and wishlists
+  - [ ] Option to track product stock levels
